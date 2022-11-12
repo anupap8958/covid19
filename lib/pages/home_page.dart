@@ -14,6 +14,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final DateUtil _dateUtil = DateUtil();
   late Future<Covid> _futureCovid;
+  // func add comma to number
+  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override
   void initState() {
@@ -190,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "+${data.new_case}",
+                                "+${data.new_case.toString().replaceAllMapped(reg, mathFunc)}",
                                 style: GoogleFonts.kanit(
                                   color: Colors.white,
                                   fontSize: 50.0,
@@ -226,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "${data.total_case}",
+                                "${data.total_case.toString().replaceAllMapped(reg, mathFunc)}",
                                 style: GoogleFonts.kanit(
                                   color: Colors.white,
                                   fontSize: 50.0,
@@ -274,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 data.new_recovered != 0
-                                    ? "+${data.new_recovered}"
+                                    ? "+${data.new_recovered.toString().replaceAllMapped(reg, mathFunc)}"
                                     : "-",
                                 style: GoogleFonts.kanit(
                                   color: Colors.white,
@@ -311,7 +314,7 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "${data.total_recovered}",
+                                "${data.total_recovered.toString().replaceAllMapped(reg, mathFunc)}",
                                 style: GoogleFonts.kanit(
                                   color: Colors.white,
                                   fontSize: 35.0,
@@ -358,7 +361,9 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                data.case_foreign != 0 ? "+${data.case_foreign}" : "-",
+                                data.case_foreign != 0
+                                    ? "+${data.case_foreign.toString().replaceAllMapped(reg, mathFunc)}"
+                                    : "-",
                                 style: GoogleFonts.kanit(
                                   color: Colors.white,
                                   fontSize: 30.0,
@@ -403,7 +408,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              "${data.case_walkin}",
+                              "${data.case_walkin.toString().replaceAllMapped(reg, mathFunc)}",
                               style: GoogleFonts.kanit(
                                 color: Colors.white,
                                 fontSize: 30.0,
@@ -433,7 +438,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              "${data.new_death}",
+                              data.new_death != 0
+                                  ? "${data.new_death.toString().replaceAllMapped(reg, mathFunc)}"
+                                  : "-",
                               style: GoogleFonts.kanit(
                                 color: Colors.white,
                                 fontSize: 30.0,
@@ -461,7 +468,7 @@ class _HomePageState extends State<HomePage> {
                                   width: 10.0,
                                 ),
                                 Text(
-                                  "${data.total_death}",
+                                  "${data.total_death.toString().replaceAllMapped(reg, mathFunc)}",
                                   style: GoogleFonts.kanit(
                                     color: Colors.white,
                                     fontSize: 20.0,

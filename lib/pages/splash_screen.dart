@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class Refresh extends StatefulWidget {
-  static const routeName = '/refresh';
 
   const Refresh({Key? key}) : super(key: key);
 
